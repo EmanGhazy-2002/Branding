@@ -156,67 +156,97 @@
       </div>
     </div>
 
-    <!-- Language Toggle -->
-    <div class="language-toggle">
-      <button id="langToggle" class="btn-modern">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
-          />
-        </svg>
-        <span id="langText">English</span>
-      </button>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar" id="mainNavbar">
       <div class="container">
         <div class="navbar-content">
+          <!-- Logo -->
           <a class="navbar-brand" href="#" data-aos="fade-right">
-            <svg width="120" height="45" viewBox="0 0 120 45" fill="none">
-              <text
-                x="60"
-                y="28"
-                font-family="Arial"
-                font-size="18"
-                font-weight="bold"
-                fill="white"
-                text-anchor="middle"
-              >
-                PikyHost
-              </text>
-            </svg>
+            <img
+              src="/placeholder.svg?height=45&width=120&text=PikyHost"
+              alt="PikyHost"
+              width="120"
+              height="45"
+              loading="eager"
+            />
           </a>
-          <button class="navbar-toggler" type="button" id="navToggler">
-            <span></span>
-            <span></span>
-            <span></span>
+
+          <!-- Mobile Toggle Button -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            id="navToggler"
+            aria-label="Toggle navigation"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
           </button>
+
+          <!-- Navigation Menu -->
           <div class="navbar-nav" id="navbarNav">
-            <a class="nav-link" href="#hero" data-ar="الرئيسية" data-en="Home"
-              >الرئيسية</a
-            >
-            <a
-              class="nav-link"
-              href="#features"
-              data-ar="المميزات"
-              data-en="Features"
-              >المميزات</a
-            >
-            <a
-              class="nav-link"
-              href="#pricing"
-              data-ar="الأسعار"
-              data-en="Pricing"
-              >الأسعار</a
-            >
-            <a
-              class="nav-link"
-              href="#contact"
-              data-ar="اتصل بنا"
-              data-en="Contact"
-              >اتصل بنا</a
-            >
+            <div class="nav-links">
+              <a
+                class="nav-link active"
+                href="#hero"
+                data-ar="الرئيسية"
+                data-en="Home"
+                >الرئيسية</a
+              >
+              <a
+                class="nav-link"
+                href="#features"
+                data-ar="المميزات"
+                data-en="Features"
+                >المميزات</a
+              >
+              <a
+                class="nav-link"
+                href="#pricing"
+                data-ar="الأسعار"
+                data-en="Pricing"
+                >الأسعار</a
+              >
+              <a
+                class="nav-link"
+                href="#contact"
+                data-ar="اتصل بنا"
+                data-en="Contact"
+                >اتصل بنا</a
+              >
+            </div>
+
+            <!-- Language Toggle -->
+            <div class="nav-language-toggle">
+              <button
+                id="navLangToggle"
+                class="nav-lang-btn"
+                aria-label="Switch language"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                  />
+                </svg>
+                <span id="navLangText">EN</span>
+              </button>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="nav-cta">
+              <a
+                href="#pricing"
+                class="nav-cta-btn"
+                data-ar="ابدأ الآن"
+                data-en="Get Started"
+                >ابدأ الآن</a
+              >
+            </div>
           </div>
         </div>
       </div>

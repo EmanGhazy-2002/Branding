@@ -105,13 +105,14 @@ class PerformanceOptimizedLandingPage {
   }
 }
 
-// Language Switcher with optimized DOM manipulation
+// Enhanced Language Switcher with better UX
 class LanguageSwitcher {
   constructor() {
     this.currentLang = localStorage.getItem("preferred-language") || "ar";
-    this.langToggle = document.getElementById("langToggle");
-    this.langText = document.getElementById("langText");
-    this.elements = null; // Cache elements
+    this.langToggle = document.getElementById("navLangToggle");
+    this.langText = document.getElementById("navLangText");
+    this.elements = null;
+    this.isLoading = false;
 
     this.init();
   }
@@ -126,24 +127,34 @@ class LanguageSwitcher {
   }
 
   cacheElements() {
-    // Cache elements to avoid repeated DOM queries
     this.elements = document.querySelectorAll("[data-ar][data-en]");
   }
 
   toggleLanguage() {
-    this.currentLang = this.currentLang === "ar" ? "en" : "ar";
-    localStorage.setItem("preferred-language", this.currentLang);
+    if (this.isLoading) return;
 
-    // Batch DOM updates
-    requestAnimationFrame(() => {
-      this.updateContent();
-      this.updateDirection();
-      this.animateLanguageChange();
-    });
+    this.isLoading = true;
+    this.langToggle.classList.add("loading");
+
+    // Simulate loading for better UX
+    setTimeout(() => {
+      this.currentLang = this.currentLang === "ar" ? "en" : "ar";
+      localStorage.setItem("preferred-language", this.currentLang);
+
+      requestAnimationFrame(() => {
+        this.updateContent();
+        this.updateDirection();
+        this.animateLanguageChange();
+
+        setTimeout(() => {
+          this.isLoading = false;
+          this.langToggle.classList.remove("loading");
+        }, 300);
+      });
+    }, 200);
   }
 
   updateContent() {
-    // Use cached elements for better performance
     this.elements.forEach((element) => {
       const text = element.getAttribute(`data-${this.currentLang}`);
       if (text && element.textContent !== text) {
@@ -152,8 +163,7 @@ class LanguageSwitcher {
     });
 
     if (this.langText) {
-      this.langText.textContent =
-        this.currentLang === "ar" ? "English" : "العربية";
+      this.langText.textContent = this.currentLang === "ar" ? "EN" : "ع";
     }
 
     document.documentElement.lang = this.currentLang;
@@ -177,20 +187,22 @@ class LanguageSwitcher {
   }
 
   animateLanguageChange() {
-    document.body.style.opacity = "0.8";
+    document.body.style.opacity = "0.95";
     setTimeout(() => {
       document.body.style.opacity = "1";
-    }, 200);
+    }, 150);
   }
 }
 
-// Navigation Controller with optimized scroll handling
+// Enhanced Navigation Controller with active link tracking
 class NavigationController {
   constructor() {
     this.navbar = document.getElementById("mainNavbar");
     this.navToggler = document.getElementById("navToggler");
     this.navbarNav = document.getElementById("navbarNav");
+    this.navLinks = document.querySelectorAll(".nav-link");
     this.lastScrollY = window.scrollY;
+    this.sections = [];
 
     this.init();
   }
@@ -198,10 +210,11 @@ class NavigationController {
   init() {
     this.setupSmoothScrolling();
     this.setupMobileNavigation();
+    this.setupActiveLinks();
+    this.setupScrollSpy();
   }
 
   setupSmoothScrolling() {
-    // Use event delegation for better performance
     document.addEventListener("click", (e) => {
       const link = e.target.closest('a[href^="#"]');
       if (link) {
@@ -215,6 +228,9 @@ class NavigationController {
             top: offsetTop,
             behavior: "smooth",
           });
+
+          // Close mobile menu if open
+          this.closeMobileNav();
         }
       }
     });
@@ -222,19 +238,97 @@ class NavigationController {
 
   setupMobileNavigation() {
     if (this.navToggler && this.navbarNav) {
-      this.navToggler.addEventListener("click", () => {
-        this.navbarNav.classList.toggle("active");
-        this.navToggler.classList.toggle("active");
+      this.navToggler.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.toggleMobileNav();
+      });
+
+      // Close mobile nav when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !this.navbar.contains(e.target) &&
+          this.navbarNav.classList.contains("active")
+        ) {
+          this.closeMobileNav();
+        }
       });
 
       // Close mobile nav when clicking on links
       this.navbarNav.addEventListener("click", (e) => {
         if (e.target.classList.contains("nav-link")) {
-          this.navbarNav.classList.remove("active");
-          this.navToggler.classList.remove("active");
+          setTimeout(() => this.closeMobileNav(), 300);
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && this.navbarNav.classList.contains("active")) {
+          this.closeMobileNav();
         }
       });
     }
+  }
+
+  setupActiveLinks() {
+    // Cache sections for scroll spy
+    this.sections = Array.from(this.navLinks)
+      .map((link) => {
+        const href = link.getAttribute("href");
+        const section = document.querySelector(href);
+        return {
+          link,
+          section,
+          id: href,
+        };
+      })
+      .filter((item) => item.section);
+  }
+
+  setupScrollSpy() {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: "-100px 0px -50% 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const sectionData = this.sections.find(
+          (s) => s.section === entry.target
+        );
+        if (sectionData) {
+          if (entry.isIntersecting) {
+            this.setActiveLink(sectionData.link);
+          }
+        }
+      });
+    }, observerOptions);
+
+    this.sections.forEach(({ section }) => {
+      observer.observe(section);
+    });
+  }
+
+  setActiveLink(activeLink) {
+    this.navLinks.forEach((link) => link.classList.remove("active"));
+    activeLink.classList.add("active");
+  }
+
+  toggleMobileNav() {
+    this.navbarNav.classList.toggle("active");
+    this.navToggler.classList.toggle("active");
+
+    // Prevent body scroll when menu is open
+    if (this.navbarNav.classList.contains("active")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }
+
+  closeMobileNav() {
+    this.navbarNav.classList.remove("active");
+    this.navToggler.classList.remove("active");
+    document.body.style.overflow = "";
   }
 }
 
