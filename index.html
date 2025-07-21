@@ -5,32 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PikyHost - استضافة مواقع موثوقة وسريعة</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Performance Optimizations -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
+      as="style"
     />
-    <!-- Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Critical CSS Inline -->
+    <style>
+      :root {
+        --primary: #009ca8;
+        --secondary: #cd5a0a;
+        --accent1: #9e9086;
+        --accent2: #00d5e6;
+        --accent3: #dcb9a1;
+        --text-dark: #1a1a1a;
+        --text-light: #fff;
+        --text-muted: #6b7280;
+        --bg-light: #fafafa;
+        --gradient-primary: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent2) 100%
+        );
+        --gradient-secondary: linear-gradient(
+          135deg,
+          var(--secondary) 0%,
+          #ff7b3a 100%
+        );
+        --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.15);
+        --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.2);
+        --border-radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Cairo, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        overflow-x: hidden;
+        background: var(--bg-light);
+      }
+      body[dir="ltr"] {
+        font-family: Inter, sans-serif;
+      }
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .navbar {
+        background: var(--primary);
+        padding: 1rem 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+      .hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background: var(--gradient-dark);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        color: var(--text-light);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+    </style>
+
+    <!-- Load Fonts -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <!-- Google Fonts (Similar to requested fonts) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Meta Tags -->
+    <meta
+      name="description"
+      content="اكتشف قوة وسرعة استضافة PikyHost المشتركة - خطوتك الأولى نحو نجاح إلكتروني استثنائي"
+    />
+    <meta
+      name="keywords"
+      content="استضافة مواقع, PikyHost, hosting, web hosting"
+    />
+    <link rel="canonical" href="https://pikyhost.com" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="PikyHost - استضافة مواقع موثوقة وسريعة"
+    />
+    <meta
+      property="og:description"
+      content="اكتشف قوة وسرعة استضافة PikyHost المشتركة - خطوتك الأولى نحو نجاح إلكتروني استثنائي"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pikyhost.com" />
   </head>
   <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
       <div class="loading-content">
         <div class="loading-logo">
-          <img src="assets/logo.svg" alt="PikyHost" height="60" />
+          <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+            <text
+              x="60"
+              y="35"
+              font-family="Arial"
+              font-size="20"
+              font-weight="bold"
+              fill="white"
+              text-anchor="middle"
+            >
+              PikyHost
+            </text>
+          </svg>
         </div>
         <div class="loading-spinner"></div>
         <p class="loading-text">جاري التحميل...</p>
@@ -40,76 +159,65 @@
     <!-- Language Toggle -->
     <div class="language-toggle">
       <button id="langToggle" class="btn-modern">
-        <i class="fas fa-globe"></i>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+          />
+        </svg>
         <span id="langText">English</span>
       </button>
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+    <nav class="navbar" id="mainNavbar">
       <div class="container">
-        <a class="navbar-brand" href="#" data-aos="fade-right">
-          <img src="assets/logo.svg" alt="PikyHost" height="45" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#hero" data-ar="الرئيسية" data-en="Home"
-                >الرئيسية</a
+        <div class="navbar-content">
+          <a class="navbar-brand" href="#" data-aos="fade-right">
+            <svg width="120" height="45" viewBox="0 0 120 45" fill="none">
+              <text
+                x="60"
+                y="28"
+                font-family="Arial"
+                font-size="18"
+                font-weight="bold"
+                fill="white"
+                text-anchor="middle"
               >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#features"
-                data-ar="المميزات"
-                data-en="Features"
-                >المميزات</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#pricing"
-                data-ar="الأسعار"
-                data-en="Pricing"
-                >الأسعار</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about" data-ar="من نحن" data-en="About"
-                >من نحن</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="#contact"
-                data-ar="اتصل بنا"
-                data-en="Contact"
-                >اتصل بنا</a
-              >
-            </li>
-            <!-- <li class="nav-item">
-              <a
-                href="dashboard.html"
-                class="btn-cta-nav"
-                data-ar="لوحة التحكم"
-                data-en="Dashboard"
-                >لوحة التحكم</a
-              >
-            </li> -->
-          </ul>
+                PikyHost
+              </text>
+            </svg>
+          </a>
+          <button class="navbar-toggler" type="button" id="navToggler">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="navbar-nav" id="navbarNav">
+            <a class="nav-link" href="#hero" data-ar="الرئيسية" data-en="Home"
+              >الرئيسية</a
+            >
+            <a
+              class="nav-link"
+              href="#features"
+              data-ar="المميزات"
+              data-en="Features"
+              >المميزات</a
+            >
+            <a
+              class="nav-link"
+              href="#pricing"
+              data-ar="الأسعار"
+              data-en="Pricing"
+              >الأسعار</a
+            >
+            <a
+              class="nav-link"
+              href="#contact"
+              data-ar="اتصل بنا"
+              data-en="Contact"
+              >اتصل بنا</a
+            >
+          </div>
         </div>
       </div>
     </nav>
@@ -121,203 +229,293 @@
           <div class="shape shape-1"></div>
           <div class="shape shape-2"></div>
           <div class="shape shape-3"></div>
-          <div class="shape shape-4"></div>
         </div>
-        <div class="hero-particles" id="heroParticles"></div>
       </div>
 
       <div class="container">
-        <div class="row align-items-center min-vh-100">
-          <div class="col-lg-6">
-            <div class="hero-content">
-              <div class="hero-badge" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-rocket"></i>
-                <span
-                  data-ar="الأسرع في المنطقة"
-                  data-en="Fastest in the Region"
-                  >الأسرع في المنطقة</span
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge" data-aos="fade-up" data-aos-delay="100">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                />
+              </svg>
+              <span data-ar="الأسرع في المنطقة" data-en="Fastest in the Region"
+                >الأسرع في المنطقة</span
+              >
+            </div>
+
+            <h1
+              class="hero-title"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              data-ar="اكتشف قوة وسرعة استضافة PikyHost المشتركة"
+              data-en="Discover the Power and Speed of PikyHost's Shared Hosting"
+            >
+              اكتشف قوة وسرعة استضافة PikyHost المشتركة
+            </h1>
+
+            <p
+              class="hero-subtitle"
+              data-aos="fade-up"
+              data-aos-delay="300"
+              data-ar="خطوتك الأولى نحو نجاح إلكتروني استثنائي"
+              data-en="Your First Step Towards Exceptional Digital Success"
+            >
+              خطوتك الأولى نحو نجاح إلكتروني استثنائي
+            </p>
+
+            <p
+              class="hero-description"
+              data-aos="fade-up"
+              data-aos-delay="400"
+              data-ar="موقعك الإلكتروني يستحق الأفضل... نحن نضمن له السرعة والأمان والاستقرار الذي يثق به عملاؤك ومحركات البحث على حد سواء."
+              data-en="Your Website Deserves the Best... We guarantee the speed, security, and stability your clients and search engines can always trust."
+            >
+              موقعك الإلكتروني يستحق الأفضل... نحن نضمن له السرعة والأمان
+              والاستقرار الذي يثق به عملاؤك ومحركات البحث على حد سواء.
+            </p>
+
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
+              <div class="stat-item">
+                <div class="stat-number" data-count="99.9">0</div>
+                <div
+                  class="stat-label"
+                  data-ar="% وقت التشغيل"
+                  data-en="% Uptime"
                 >
-              </div>
-
-              <h1
-                class="hero-title"
-                data-aos="fade-up"
-                data-aos-delay="200"
-                data-ar="اكتشف قوة وسرعة استضافة PikyHost المشتركة"
-                data-en="Discover the Power and Speed of PikyHost's Shared Hosting"
-              >
-                اكتشف قوة وسرعة استضافة PikyHost المشتركة
-              </h1>
-
-              <p
-                class="hero-subtitle"
-                data-aos="fade-up"
-                data-aos-delay="300"
-                data-ar="خطوتك الأولى نحو نجاح إلكتروني استثنائي"
-                data-en="Your First Step Towards Exceptional Digital Success"
-              >
-                خطوتك الأولى نحو نجاح إلكتروني استثنائي
-              </p>
-
-              <p
-                class="hero-description"
-                data-aos="fade-up"
-                data-aos-delay="400"
-                data-ar="موقعك الإلكتروني يستحق الأفضل... نحن نضمن له السرعة والأمان والاستقرار الذي يثق به عملاؤك ومحركات البحث على حد سواء."
-                data-en="Your Website Deserves the Best... We guarantee the speed, security, and stability your clients and search engines can always trust."
-              >
-                موقعك الإلكتروني يستحق الأفضل... نحن نضمن له السرعة والأمان
-                والاستقرار الذي يثق به عملاؤك ومحركات البحث على حد سواء.
-              </p>
-
-              <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
-                <div class="stat-item">
-                  <div class="stat-number" data-count="99.9">0</div>
-                  <div
-                    class="stat-label"
-                    data-ar="% وقت التشغيل"
-                    data-en="% Uptime"
-                  >
-                    % وقت التشغيل
-                  </div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-number" data-count="24">0</div>
-                  <div
-                    class="stat-label"
-                    data-ar="/7 دعم فني"
-                    data-en="/7 Support"
-                  >
-                    7/ دعم فني
-                  </div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-number" data-count="1000">0</div>
-                  <div
-                    class="stat-label"
-                    data-ar="+ عميل راضي"
-                    data-en="+ Happy Clients"
-                  >
-                    + عميل راضي
-                  </div>
+                  % وقت التشغيل
                 </div>
               </div>
-
-              <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                <a href="#pricing" class="btn-primary-modern">
-                  <span data-ar="ابدأ الآن" data-en="Get Started"
-                    >ابدأ الآن</span
-                  >
-                  <i class="fas fa-arrow-left"></i>
-                </a>
-                <a href="#features" class="btn-secondary-modern">
-                  <i class="fas fa-play"></i>
-                  <span data-ar="شاهد العرض" data-en="Watch Demo"
-                    >شاهد العرض</span
-                  >
-                </a>
+              <div class="stat-item">
+                <div class="stat-number" data-count="24">0</div>
+                <div
+                  class="stat-label"
+                  data-ar="/7 دعم فني"
+                  data-en="/7 Support"
+                >
+                  7/ دعم فني
+                </div>
               </div>
+              <div class="stat-item">
+                <div class="stat-number" data-count="1000">0</div>
+                <div
+                  class="stat-label"
+                  data-ar="+ عميل راضي"
+                  data-en="+ Happy Clients"
+                >
+                  + عميل راضي
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+              <a href="#pricing" class="btn-primary-modern">
+                <span data-ar="اشترك الآن" data-en="Subscribe Now"
+                  >اشترك الآن</span
+                >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+                  />
+                </svg>
+              </a>
+              <a href="#features" class="btn-secondary-modern">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <span data-ar="شاهد العرض" data-en="Watch Demo"
+                  >شاهد العرض</span
+                >
+              </a>
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <div class="hero-visual" data-aos="fade-left" data-aos-delay="700">
-              <div class="hero-card floating">
-                <div class="card-header">
-                  <div class="card-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    class="card-title"
-                    data-ar="لوحة التحكم"
-                    data-en="Control Panel"
-                  >
-                    لوحة التحكم
-                  </div>
+          <div class="hero-visual" data-aos="fade-left" data-aos-delay="700">
+            <div class="hero-card floating">
+              <div class="card-header">
+                <div class="card-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
-                <div class="card-content">
-                  <div class="metric-row">
-                    <div class="metric">
-                      <div class="metric-icon primary">
-                        <i class="fas fa-tachometer-alt"></i>
-                      </div>
-                      <div class="metric-info">
-                        <div class="metric-value">2.3s</div>
-                        <div
-                          class="metric-label"
-                          data-ar="سرعة التحميل"
-                          data-en="Load Time"
-                        >
-                          سرعة التحميل
-                        </div>
-                      </div>
-                    </div>
-                    <div class="metric-chart">
-                      <div class="chart-bar" style="height: 60%"></div>
-                      <div class="chart-bar" style="height: 80%"></div>
-                      <div class="chart-bar" style="height: 100%"></div>
-                      <div class="chart-bar" style="height: 70%"></div>
-                    </div>
-                  </div>
-
-                  <div class="metric-row">
-                    <div class="metric">
-                      <div class="metric-icon secondary">
-                        <i class="fas fa-shield-alt"></i>
-                      </div>
-                      <div class="metric-info">
-                        <div class="metric-value">100%</div>
-                        <div
-                          class="metric-label"
-                          data-ar="الأمان"
-                          data-en="Security"
-                        >
-                          الأمان
-                        </div>
-                      </div>
-                    </div>
-                    <div class="progress-ring">
-                      <svg width="50" height="50">
-                        <circle
-                          cx="25"
-                          cy="25"
-                          r="20"
-                          stroke="#e0e0e0"
-                          stroke-width="4"
-                          fill="none"
+                <div
+                  class="card-title"
+                  data-ar="لوحة التحكم"
+                  data-en="Control Panel"
+                >
+                  لوحة التحكم
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="metric-row">
+                  <div class="metric">
+                    <div class="metric-icon primary">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44z"
                         />
-                        <circle
-                          cx="25"
-                          cy="25"
-                          r="20"
-                          stroke="var(--secondary-color)"
-                          stroke-width="4"
-                          fill="none"
-                          stroke-dasharray="125.6"
-                          stroke-dashoffset="0"
-                          class="progress-circle"
+                        <path
+                          d="M10.59 15.41a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"
                         />
                       </svg>
                     </div>
+                    <div class="metric-info">
+                      <div class="metric-value">2.3s</div>
+                      <div
+                        class="metric-label"
+                        data-ar="سرعة التحميل"
+                        data-en="Load Time"
+                      >
+                        سرعة التحميل
+                      </div>
+                    </div>
+                  </div>
+                  <div class="metric-chart">
+                    <div class="chart-bar" style="height: 60%"></div>
+                    <div class="chart-bar" style="height: 80%"></div>
+                    <div class="chart-bar" style="height: 100%"></div>
+                    <div class="chart-bar" style="height: 70%"></div>
+                  </div>
+                </div>
+
+                <div class="metric-row">
+                  <div class="metric">
+                    <div class="metric-icon secondary">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,8.7 10.2,10V11.5H13.8V10C13.8,8.7 12.8,8.2 12,8.2Z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="metric-info">
+                      <div class="metric-value">100%</div>
+                      <div
+                        class="metric-label"
+                        data-ar="الأمان"
+                        data-en="Security"
+                      >
+                        الأمان
+                      </div>
+                    </div>
+                  </div>
+                  <div class="progress-ring">
+                    <svg width="50" height="50">
+                      <circle
+                        cx="25"
+                        cy="25"
+                        r="20"
+                        stroke="#e0e0e0"
+                        stroke-width="4"
+                        fill="none"
+                      />
+                      <circle
+                        cx="25"
+                        cy="25"
+                        r="20"
+                        stroke="var(--secondary)"
+                        stroke-width="4"
+                        fill="none"
+                        stroke-dasharray="125.6"
+                        stroke-dashoffset="0"
+                        class="progress-circle"
+                      />
+                    </svg>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="floating-elements">
-                <div class="floating-element element-1">
-                  <i class="fas fa-database"></i>
-                </div>
-                <div class="floating-element element-2">
-                  <i class="fas fa-cloud"></i>
-                </div>
-                <div class="floating-element element-3">
-                  <i class="fas fa-lock"></i>
-                </div>
+            <div class="floating-elements">
+              <div class="floating-element element-1">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
+                  />
+                </svg>
+              </div>
+              <div class="floating-element element-2">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
+                  />
+                </svg>
+              </div>
+              <div class="floating-element element-3">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"
+                  />
+                </svg>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="why-choose-section">
+      <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+          <h2
+            class="section-title"
+            data-ar="لماذا تختار استضافتنا المشتركة؟"
+            data-en="Why Choose Our Shared Hosting?"
+          >
+            لماذا تختار استضافتنا المشتركة؟
+          </h2>
+          <p
+            class="section-description"
+            data-ar="في عالم الأعمال الرقمية، لا مجال للمخاطرة... اختر استضافة مواقع تجمع بين الأمان الفائق، الأداء الاستثنائي، والدعم المستمر - مصممة خصيصاً لتلبية تطلعات رواد الأعمال والشركات من الفئة الأولى في مصر ودول الخليج، بحلول تقنية موثوقة وسريعة، بدون تعقيدات."
+            data-en="In the world of digital business, there is no room for risk... Choose shared hosting that combines top-level security, outstanding performance, and continuous support—carefully designed to meet the ambitions of entrepreneurs and Class A businesses in Egypt and the Gulf region, with reliable, fast technological solutions without complications."
+          >
+            في عالم الأعمال الرقمية، لا مجال للمخاطرة... اختر استضافة مواقع تجمع
+            بين الأمان الفائق، الأداء الاستثنائي، والدعم المستمر - مصممة خصيصاً
+            لتلبية تطلعات رواد الأعمال والشركات من الفئة الأولى في مصر ودول
+            الخليج، بحلول تقنية موثوقة وسريعة، بدون تعقيدات.
+          </p>
         </div>
       </div>
     </section>
@@ -327,23 +525,17 @@
       <div class="container">
         <div class="section-header text-center" data-aos="fade-up">
           <div class="section-badge">
-            <i class="fas fa-star"></i>
-            <span data-ar="المميزات" data-en="Features">المميزات</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              />
+            </svg>
+            <span
+              data-ar="مميزات استضافتنا المشتركة"
+              data-en="Features of Our Shared Hosting"
+              >مميزات استضافتنا المشتركة</span
+            >
           </div>
-          <h2
-            class="section-title"
-            data-ar="لماذا تختار PikyHost؟"
-            data-en="Why Choose PikyHost?"
-          >
-            لماذا تختار PikyHost؟
-          </h2>
-          <p
-            class="section-description"
-            data-ar="نقدم أفضل الحلول التقنية مع ضمان الجودة والأداء العالي"
-            data-en="We provide the best technical solutions with guaranteed quality and high performance"
-          >
-            نقدم أفضل الحلول التقنية مع ضمان الجودة والأداء العالي
-          </p>
         </div>
 
         <div class="features-grid">
@@ -354,7 +546,16 @@
           >
             <div class="feature-icon-wrapper">
               <div class="feature-icon primary">
-                <i class="fas fa-rocket"></i>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                  />
+                </svg>
               </div>
               <div class="icon-bg"></div>
             </div>
@@ -362,20 +563,12 @@
               الأداء الفائق
             </h3>
             <p
-              data-ar="أقراص SSD فائقة السرعة + تقنية LiteSpeed تضمن تحميل موقعك في ثوانٍ معدودة"
-              data-en="Ultra-fast SSD drives + LiteSpeed technology ensure your website loads in seconds"
+              data-ar="أقراص SSD فائقة السرعة + تقنية LiteSpeed تضمن تحميل موقعك فوراً مهما كان حجم البيانات."
+              data-en="Ultra-fast SSD drives + LiteSpeed technology ensure instant website loading, regardless of data volume."
             >
-              أقراص SSD فائقة السرعة + تقنية LiteSpeed تضمن تحميل موقعك في ثوانٍ
-              معدودة
+              أقراص SSD فائقة السرعة + تقنية LiteSpeed تضمن تحميل موقعك فوراً
+              مهما كان حجم البيانات.
             </p>
-            <div class="feature-metrics">
-              <div class="metric-item">
-                <span class="metric-number">3x</span>
-                <span class="metric-text" data-ar="أسرع" data-en="Faster"
-                  >أسرع</span
-                >
-              </div>
-            </div>
           </div>
 
           <div
@@ -385,7 +578,16 @@
           >
             <div class="feature-icon-wrapper">
               <div class="feature-icon secondary">
-                <i class="fas fa-shield-alt"></i>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,8.7 10.2,10V11.5H13.8V10C13.8,8.7 12.8,8.2 12,8.2Z"
+                  />
+                </svg>
               </div>
               <div class="icon-bg"></div>
             </div>
@@ -393,20 +595,12 @@
               الأمان المطلق
             </h3>
             <p
-              data-ar="حماية متقدمة مع جدار حماية WAF وشهادات SSL مجانية وحماية من الهجمات السيبرانية"
-              data-en="Advanced protection with WAF firewall, free SSL certificates, and cyber attack protection"
+              data-ar="جدار حماية WAF، شهادة SSL مجددة تلقائياً، نسخ احتياطي يومي، توزيع CDN عالمي."
+              data-en="WAF firewall, automatically renewed SSL certificate, daily backups, and global CDN distribution."
             >
-              حماية متقدمة مع جدار حماية WAF وشهادات SSL مجانية وحماية من
-              الهجمات السيبرانية
+              جدار حماية WAF، شهادة SSL مجددة تلقائياً، نسخ احتياطي يومي، توزيع
+              CDN عالمي.
             </p>
-            <div class="feature-metrics">
-              <div class="metric-item">
-                <span class="metric-number">99.9%</span>
-                <span class="metric-text" data-ar="حماية" data-en="Protection"
-                  >حماية</span
-                >
-              </div>
-            </div>
           </div>
 
           <div
@@ -416,25 +610,27 @@
           >
             <div class="feature-icon-wrapper">
               <div class="feature-icon accent">
-                <i class="fas fa-cogs"></i>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
+                  />
+                </svg>
               </div>
               <div class="icon-bg"></div>
             </div>
             <h3 data-ar="تحكم كامل" data-en="Full Control">تحكم كامل</h3>
             <p
-              data-ar="لوحة تحكم متطورة مع تنصيب تطبيقات بضغطة واحدة وأدوات إدارة متقدمة"
-              data-en="Advanced control panel with one-click app installation and advanced management tools"
+              data-ar="تنصيب WordPress و400 تطبيق بضغطة واحدة، مع لوحة Spanel سهلة الاستخدام + Website Builder مجاناً."
+              data-en="One-click installation for WordPress and 400+ applications, with an easy-to-use Spanel control panel + free Website Builder."
             >
-              لوحة تحكم متطورة مع تنصيب تطبيقات بضغطة واحدة وأدوات إدارة متقدمة
+              تنصيب WordPress و400 تطبيق بضغطة واحدة، مع لوحة Spanel سهلة
+              الاستخدام + Website Builder مجاناً.
             </p>
-            <div class="feature-metrics">
-              <div class="metric-item">
-                <span class="metric-number">400+</span>
-                <span class="metric-text" data-ar="تطبيق" data-en="Apps"
-                  >تطبيق</span
-                >
-              </div>
-            </div>
           </div>
 
           <div
@@ -444,26 +640,29 @@
           >
             <div class="feature-icon-wrapper">
               <div class="feature-icon tertiary">
-                <i class="fas fa-headset"></i>
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12,1C8.96,1 6.21,2.65 4.86,5.24C3.5,7.83 3.5,11.17 4.86,13.76C6.21,16.35 8.96,18 12,18C15.04,18 17.79,16.35 19.14,13.76C20.5,11.17 20.5,7.83 19.14,5.24C17.79,2.65 15.04,1 12,1M12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"
+                  />
+                </svg>
               </div>
               <div class="icon-bg"></div>
             </div>
-            <h3 data-ar="دعم متخصص" data-en="Expert Support">دعم متخصص</h3>
+            <h3 data-ar="الدعم المتخصص" data-en="Specialized Support">
+              الدعم المتخصص
+            </h3>
             <p
-              data-ar="فريق دعم فني محترف متاح 24/7 باللغتين العربية والإنجليزية لمساعدتك في أي وقت"
-              data-en="Professional technical support team available 24/7 in Arabic and English to help you anytime"
+              data-ar="فريق تقني محترف باللغة العربية والإنجليزية يتعامل مباشرة مع احتياجاتك 24/7."
+              data-en="A professional technical support team, available in Arabic and English, directly addressing your needs 24/7."
             >
-              فريق دعم فني محترف متاح 24/7 باللغتين العربية والإنجليزية لمساعدتك
-              في أي وقت
+              فريق تقني محترف باللغة العربية والإنجليزية يتعامل مباشرة مع
+              احتياجاتك 24/7.
             </p>
-            <div class="feature-metrics">
-              <div class="metric-item">
-                <span class="metric-number">24/7</span>
-                <span class="metric-text" data-ar="دعم" data-en="Support"
-                  >دعم</span
-                >
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -474,40 +673,16 @@
       <div class="container">
         <div class="section-header text-center" data-aos="fade-up">
           <div class="section-badge">
-            <i class="fas fa-tags"></i>
-            <span data-ar="الأسعار" data-en="Pricing">الأسعار</span>
-          </div>
-          <h2
-            class="section-title"
-            data-ar="اختر الباقة المناسبة لك"
-            data-en="Choose Your Perfect Plan"
-          >
-            اختر الباقة المناسبة لك
-          </h2>
-          <p
-            class="section-description"
-            data-ar="باقات مرنة تناسب جميع احتياجاتك مع ضمان أفضل الأسعار"
-            data-en="Flexible plans that suit all your needs with guaranteed best prices"
-          >
-            باقات مرنة تناسب جميع احتياجاتك مع ضمان أفضل الأسعار
-          </p>
-        </div>
-
-        <div class="pricing-toggle" data-aos="fade-up" data-aos-delay="100">
-          <div class="toggle-wrapper">
-            <span class="toggle-label" data-ar="شهري" data-en="Monthly"
-              >شهري</span
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M5.5 7A1.5 1.5 0 0 1 4 5.5A1.5 1.5 0 0 1 5.5 4A1.5 1.5 0 0 1 7 5.5A1.5 1.5 0 0 1 5.5 7M21.41 11.58L12.41 2.58A2 2 0 0 0 11 2H4A2 2 0 0 0 2 4V11A2 2 0 0 0 2.59 12.42L11.59 21.42A2 2 0 0 0 13 22A2 2 0 0 0 14.41 21.41L21.41 14.41A2 2 0 0 0 22 13A2 2 0 0 0 21.41 11.58Z"
+              />
+            </svg>
+            <span
+              data-ar="اختر الباقة التي تناسب احتياجاتك"
+              data-en="Choose the Plan That Suits Your Needs"
+              >اختر الباقة التي تناسب احتياجاتك</span
             >
-            <div class="toggle-switch">
-              <input type="checkbox" id="pricingToggle" checked />
-              <label for="pricingToggle"></label>
-            </div>
-            <span class="toggle-label" data-ar="سنوي" data-en="Yearly"
-              >سنوي</span
-            >
-            <div class="save-badge" data-ar="وفر 30%" data-en="Save 30%">
-              وفر 30%
-            </div>
           </div>
         </div>
 
@@ -520,33 +695,30 @@
           >
             <div class="pricing-header">
               <div class="plan-icon">
-                <i class="fas fa-seedling"></i>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H5C3.9 1 3 1.9 3 3V21C3 22.1 3.9 23 5 23H19C20.1 23 21 22.1 21 21V9Z"
+                  />
+                </svg>
               </div>
               <h3 data-ar="الباقة الأساسية" data-en="Basic Plan">
                 الباقة الأساسية
               </h3>
-              <p
-                data-ar="مثالية للمشاريع الناشئة"
-                data-en="Perfect for startups"
-              >
-                مثالية للمشاريع الناشئة
+              <p data-ar="للمشاريع الناشئة" data-en="For startups">
+                للمشاريع الناشئة
               </p>
               <div class="price-wrapper">
                 <div class="price">
                   <span class="currency">$</span>
-                  <span class="amount" data-monthly="4.99" data-yearly="49.88"
-                    >49.88</span
+                  <span class="amount">49.88</span>
+                  <span class="period" data-ar="/سنوياً" data-en="/year"
+                    >/سنوياً</span
                   >
-                  <span class="period" data-ar="/سنة" data-en="/year"
-                    >/سنة</span
-                  >
-                </div>
-                <div
-                  class="original-price"
-                  data-monthly="$6.99"
-                  data-yearly="$71.28"
-                >
-                  $71.28
                 </div>
               </div>
             </div>
@@ -554,43 +726,143 @@
             <div class="pricing-features">
               <ul>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span data-ar="5 مواقع إلكترونية" data-en="5 websites"
                     >5 مواقع إلكترونية</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="10 جيجا تخزين SSD" data-en="10 GB SSD storage"
-                    >10 جيجا تخزين SSD</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="10 جيجا تخزين SSD فائق السرعة"
+                    data-en="10 GB ultra-fast SSD storage"
+                    >10 جيجا تخزين SSD فائق السرعة</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="512 ميجا RAM" data-en="512 MB RAM"
-                    >512 ميجا RAM</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="512 ميجا ذاكرة وصول عشوائي"
+                    data-en="512 MB RAM"
+                    >512 ميجا ذاكرة وصول عشوائي</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span data-ar="100,000 ملف Inodes" data-en="100,000 Inodes"
+                    >100,000 ملف Inodes</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
                     data-ar="نقل بيانات غير محدود"
-                    data-en="Unlimited bandwidth"
+                    data-en="Unlimited data transfer"
                     >نقل بيانات غير محدود</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
-                    data-ar="شهادة SSL مجانية"
-                    data-en="Free SSL certificate"
-                    >شهادة SSL مجانية</span
+                    data-ar="10 حسابات بريد إلكتروني احترافية"
+                    data-en="10 professional email accounts"
+                    >10 حسابات بريد إلكتروني احترافية</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="نسخ احتياطية يومية" data-en="Daily backups"
-                    >نسخ احتياطية يومية</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="أمان متقدم CDN + WAF"
+                    data-en="Advanced CDN + WAF security"
+                    >أمان متقدم CDN + WAF</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="شهادة SSL مجانية مع التجديد التلقائي"
+                    data-en="Free SSL certificate with automatic renewal"
+                    >شهادة SSL مجانية مع التجديد التلقائي</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="نسخ احتياطية يومية داخلية"
+                    data-en="Daily internal backups"
+                    >نسخ احتياطية يومية داخلية</span
                   >
                 </li>
               </ul>
@@ -600,7 +872,7 @@
               <button
                 class="btn-plan-select"
                 data-ar="اختر هذه الباقة"
-                data-en="Choose Plan"
+                data-en="Choose This Plan"
               >
                 اختر هذه الباقة
               </button>
@@ -615,40 +887,41 @@
           >
             <div
               class="popular-badge"
-              data-ar="الأكثر شعبية"
-              data-en="Most Popular"
+              data-ar="الأكثر طلباً (وفر 74.5%)"
+              data-en="Most Popular (Save 74.5%)"
             >
-              الأكثر شعبية
+              الأكثر طلباً (وفر 74.5%)
             </div>
             <div class="pricing-header">
               <div class="plan-icon">
-                <i class="fas fa-rocket"></i>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                  />
+                </svg>
               </div>
               <h3 data-ar="الباقة المتقدمة" data-en="Advanced Plan">
                 الباقة المتقدمة
               </h3>
-              <p
-                data-ar="الأفضل للشركات المتنامية"
-                data-en="Best for growing businesses"
-              >
-                الأفضل للشركات المتنامية
-              </p>
               <div class="price-wrapper">
                 <div class="price">
                   <span class="currency">$</span>
-                  <span class="amount" data-monthly="6.99" data-yearly="69.48"
-                    >69.48</span
-                  >
-                  <span class="period" data-ar="/سنة" data-en="/year"
-                    >/سنة</span
+                  <span class="amount">69.48</span>
+                  <span class="period" data-ar="/سنوياً" data-en="/year"
+                    >/سنوياً</span
                   >
                 </div>
                 <div
                   class="original-price"
-                  data-monthly="$9.99"
-                  data-yearly="$99.28"
+                  data-ar="بدلاً من $229"
+                  data-en="Instead of $229"
                 >
-                  $99.28
+                  بدلاً من $229
                 </div>
               </div>
             </div>
@@ -656,45 +929,125 @@
             <div class="pricing-features">
               <ul>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span data-ar="100 موقع إلكتروني" data-en="100 websites"
                     >100 موقع إلكتروني</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="40 جيجا تخزين SSD" data-en="40 GB SSD storage"
-                    >40 جيجا تخزين SSD</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="40 جيجا تخزين SSD متطور"
+                    data-en="40 GB advanced SSD storage"
+                    >40 جيجا تخزين SSD متطور</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="1 جيجا RAM" data-en="1 GB RAM"
-                    >1 جيجا RAM</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span data-ar="1 جيجا ذاكرة وصول عشوائي" data-en="1 GB RAM"
+                    >1 جيجا ذاكرة وصول عشوائي</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span data-ar="400,000 ملف Inodes" data-en="400,000 Inodes"
+                    >400,000 ملف Inodes</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
                     data-ar="نقل بيانات غير محدود"
-                    data-en="Unlimited bandwidth"
+                    data-en="Unlimited data transfer"
                     >نقل بيانات غير محدود</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
-                    data-ar="حسابات بريد غير محدودة"
+                    data-ar="حسابات بريد إلكتروني غير محدودة"
                     data-en="Unlimited email accounts"
-                    >حسابات بريد غير محدودة</span
+                    >حسابات بريد إلكتروني غير محدودة</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
-                    data-ar="نسخ احتياطية خارجية"
-                    data-en="External backups"
-                    >نسخ احتياطية خارجية</span
+                    data-ar="أمان شامل CDN + WAF"
+                    data-en="Comprehensive CDN + WAF security"
+                    >أمان شامل CDN + WAF</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="نسخ احتياطية يومية خارجية للحماية القصوى"
+                    data-en="Daily external backups for maximum protection"
+                    >نسخ احتياطية يومية خارجية للحماية القصوى</span
                   >
                 </li>
               </ul>
@@ -704,7 +1057,7 @@
               <button
                 class="btn-plan-select featured"
                 data-ar="اختر هذه الباقة"
-                data-en="Choose Plan"
+                data-en="Choose This Plan"
               >
                 اختر هذه الباقة
               </button>
@@ -719,33 +1072,30 @@
           >
             <div class="pricing-header">
               <div class="plan-icon">
-                <i class="fas fa-crown"></i>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M5 16L3 14V9L5 7H7L9 9V14L7 16H5M11 16L9 14V9L11 7H13L15 9V14L13 16H11M17 16L15 14V9L17 7H19L21 9V14L19 16H17Z"
+                  />
+                </svg>
               </div>
               <h3 data-ar="الباقة الاحترافية" data-en="Professional Plan">
                 الباقة الاحترافية
               </h3>
-              <p
-                data-ar="للمشاريع الكبيرة والمؤسسات"
-                data-en="For large projects and enterprises"
-              >
-                للمشاريع الكبيرة والمؤسسات
+              <p data-ar="للمشاريع الكبيرة" data-en="For large projects">
+                للمشاريع الكبيرة
               </p>
               <div class="price-wrapper">
                 <div class="price">
                   <span class="currency">$</span>
-                  <span class="amount" data-monthly="10.99" data-yearly="109.37"
-                    >109.37</span
+                  <span class="amount">109.37</span>
+                  <span class="period" data-ar="/سنوياً" data-en="/year"
+                    >/سنوياً</span
                   >
-                  <span class="period" data-ar="/سنة" data-en="/year"
-                    >/سنة</span
-                  >
-                </div>
-                <div
-                  class="original-price"
-                  data-monthly="$15.99"
-                  data-yearly="$156.24"
-                >
-                  $156.24
                 </div>
               </div>
             </div>
@@ -753,43 +1103,127 @@
             <div class="pricing-features">
               <ul>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="مواقع غير محدودة" data-en="Unlimited websites"
-                    >مواقع غير محدودة</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="مواقع غير محدودة (استخدام عادل)"
+                    data-en="Unlimited websites (fair usage)"
+                    >مواقع غير محدودة (استخدام عادل)</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="80 جيجا تخزين SSD" data-en="80 GB SSD storage"
-                    >80 جيجا تخزين SSD</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="80 جيجا تخزين SSD عالي الأداء"
+                    data-en="80 GB high-performance SSD storage"
+                    >80 جيجا تخزين SSD عالي الأداء</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="2 جيجا RAM" data-en="2 GB RAM"
-                    >2 جيجا RAM</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span data-ar="2 جيجا ذاكرة وصول عشوائي" data-en="2 GB RAM"
+                    >2 جيجا ذاكرة وصول عشوائي</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span data-ar="800,000 ملف Inodes" data-en="800,000 Inodes"
+                    >800,000 ملف Inodes</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
                     data-ar="نقل بيانات غير محدود"
-                    data-en="Unlimited bandwidth"
+                    data-en="Unlimited data transfer"
                     >نقل بيانات غير محدود</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
-                  ><span data-ar="دعم أولوية" data-en="Priority support"
-                    >دعم أولوية</span
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="حسابات بريد غير محدودة (استخدام عادل)"
+                    data-en="Unlimited email accounts (fair usage)"
+                    >حسابات بريد غير محدودة (استخدام عادل)</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check"></i
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
                   ><span
-                    data-ar="نسخ احتياطية متقدمة"
-                    data-en="Advanced backups"
-                    >نسخ احتياطية متقدمة</span
+                    data-ar="حماية متكاملة CDN + WAF"
+                    data-en="Integrated CDN + WAF security"
+                    >حماية متكاملة CDN + WAF</span
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                    /></svg
+                  ><span
+                    data-ar="نسخ احتياطية يومية متقدمة"
+                    data-en="Advanced daily backups"
+                    >نسخ احتياطية يومية متقدمة</span
                   >
                 </li>
               </ul>
@@ -799,12 +1233,128 @@
               <button
                 class="btn-plan-select"
                 data-ar="اختر هذه الباقة"
-                data-en="Choose Plan"
+                data-en="Choose This Plan"
               >
                 اختر هذه الباقة
               </button>
             </div>
           </div>
+        </div>
+
+        <!-- Included Features -->
+        <div class="included-features" data-aos="fade-up" data-aos-delay="500">
+          <h4 data-ar="جميع الباقات تشمل:" data-en="All Plans Include:">
+            جميع الباقات تشمل:
+          </h4>
+          <div class="features-list">
+            <span
+              data-ar="دومين مجاني لمدة عام"
+              data-en="Free domain for one year"
+              >دومين مجاني لمدة عام</span
+            >
+            <span
+              data-ar="شهادة SSL مجانية مع التجديد التلقائي"
+              data-en="Free SSL certificate with automatic renewal"
+              >شهادة SSL مجانية مع التجديد التلقائي</span
+            >
+            <span data-ar="نسخ احتياطي يومي" data-en="Daily backups"
+              >نسخ احتياطي يومي</span
+            >
+            <span data-ar="دعم مباشر 24/7" data-en="24/7 live support"
+              >دعم مباشر 24/7</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="target-audience-section">
+      <div class="container">
+        <div class="section-header text-center" data-aos="fade-up">
+          <h2
+            class="section-title"
+            data-ar="لمن تناسب خدمة Shared Hosting؟"
+            data-en="Who Is Shared Hosting For?"
+          >
+            لمن تناسب خدمة Shared Hosting؟
+          </h2>
+        </div>
+
+        <div class="target-grid">
+          <div class="target-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="target-icon">✓</div>
+            <p
+              data-ar="أصحاب الشركات الناشئة والمتوسطة"
+              data-en="Owners of startups and medium-sized businesses"
+            >
+              أصحاب الشركات الناشئة والمتوسطة
+            </p>
+          </div>
+          <div class="target-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="target-icon">✓</div>
+            <p
+              data-ar="مواقع الشركات والبورتفوليوهات التعريفية"
+              data-en="Company websites and professional portfolios"
+            >
+              مواقع الشركات والبورتفوليوهات التعريفية
+            </p>
+          </div>
+          <div class="target-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="target-icon">✓</div>
+            <p
+              data-ar="المتاجر الإلكترونية الصغيرة والمتوسطة"
+              data-en="Small and medium-sized e-commerce stores"
+            >
+              المتاجر الإلكترونية الصغيرة والمتوسطة
+            </p>
+          </div>
+          <div class="target-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="target-icon">✓</div>
+            <p
+              data-ar="المدونات الشخصية والمواقع الإعلامية"
+              data-en="Personal blogs and media websites"
+            >
+              المدونات الشخصية والمواقع الإعلامية
+            </p>
+          </div>
+          <div class="target-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="target-icon">✓</div>
+            <p
+              data-ar="أي شخص يبحث عن استضافة سريعة وآمنة بدون تكاليف باهظة"
+              data-en="Anyone seeking fast and secure hosting without exorbitant costs"
+            >
+              أي شخص يبحث عن استضافة سريعة وآمنة بدون تكاليف باهظة
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content" data-aos="fade-up">
+          <h2
+            data-ar="لا تدع موقعك الإلكتروني يكون نقطة ضعف في استراتيجيتك الرقمية..."
+            data-en="Don't let your website be a weak point in your digital strategy..."
+          >
+            لا تدع موقعك الإلكتروني يكون نقطة ضعف في استراتيجيتك الرقمية...
+          </h2>
+          <p
+            data-ar="اختر الاستضافة التي تستحقها أعمالك المتميزة."
+            data-en="Choose the hosting that matches your distinguished business."
+          >
+            اختر الاستضافة التي تستحقها أعمالك المتميزة.
+          </p>
+          <a href="#pricing" class="btn-primary-modern">
+            <span data-ar="اشترك الآن" data-en="Subscribe Now">اشترك الآن</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -812,105 +1362,69 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
       <div class="container">
-        <div class="section-header text-center" data-aos="fade-up">
-          <div class="section-badge">
-            <i class="fas fa-envelope"></i>
-            <span data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</span>
-          </div>
-          <h2
-            class="section-title"
-            data-ar="نحن هنا لمساعدتك"
-            data-en="We're Here to Help"
-          >
-            نحن هنا لمساعدتك
-          </h2>
-        </div>
-
         <div class="contact-grid">
-          <div class="contact-info" data-aos="fade-right">
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-phone"></i>
-              </div>
-              <div class="contact-details">
-                <h4 data-ar="اتصل بنا" data-en="Call Us">اتصل بنا</h4>
-                <p>+447311821906</p>
-                <p>+20 1115949555</p>
-              </div>
+          <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="contact-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                />
+              </svg>
             </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="contact-details">
-                <h4 data-ar="راسلنا" data-en="Email Us">راسلنا</h4>
-                <p>info@pikyhost.com</p>
-                <p>support@pikyhost.com</p>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div class="contact-details">
-                <h4 data-ar="موقعنا" data-en="Visit Us">موقعنا</h4>
-                <p
-                  data-ar="71-75 شارع شيلتون، لندن، المملكة المتحدة"
-                  data-en="71-75 Shelton Street, London, UK"
-                >
-                  71-75 شارع شيلتون، لندن، المملكة المتحدة
-                </p>
-              </div>
+            <div class="contact-details">
+              <h4 data-ar="اتصل بنا" data-en="Call Us">اتصل بنا</h4>
+              <p>+447311821906</p>
+              <p>+20 1115949555</p>
             </div>
           </div>
 
-          <div class="contact-form-wrapper" data-aos="fade-left">
-            <form class="contact-form modern" id="contactForm">
-              <div class="form-group">
-                <input type="text" id="name" name="name" required />
-                <label for="name" data-ar="الاسم الكامل" data-en="Full Name"
-                  >الاسم الكامل</label
-                >
-              </div>
+          <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="contact-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                />
+              </svg>
+            </div>
+            <div class="contact-details">
+              <h4 data-ar="راسلنا" data-en="Email Us">راسلنا</h4>
+              <p>info@pikyhost.com</p>
+              <p>support@pikyhost.com</p>
+            </div>
+          </div>
 
-              <div class="form-group">
-                <input type="email" id="email" name="email" required />
-                <label
-                  for="email"
-                  data-ar="البريد الإلكتروني"
-                  data-en="Email Address"
-                  >البريد الإلكتروني</label
-                >
-              </div>
-
-              <div class="form-group">
-                <input type="tel" id="phone" name="phone" />
-                <label for="phone" data-ar="رقم الهاتف" data-en="Phone Number"
-                  >رقم الهاتف</label
-                >
-              </div>
-
-              <div class="form-group">
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  required
-                ></textarea>
-                <label for="message" data-ar="رسالتك" data-en="Your Message"
-                  >رسالتك</label
-                >
-              </div>
-
-              <button type="submit" class="btn-submit-modern">
-                <span data-ar="إرسال الرسالة" data-en="Send Message"
-                  >إرسال الرسالة</span
-                >
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
+          <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="contact-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                />
+              </svg>
+            </div>
+            <div class="contact-details">
+              <h4 data-ar="موقعنا" data-en="Visit Us">موقعنا</h4>
+              <p
+                data-ar="71 - 75 شارع شيلتون لندن المملكة المتحدة"
+                data-en="71 - 75 Shelton Street, London, UK"
+              >
+                71 - 75 شارع شيلتون لندن المملكة المتحدة
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -921,56 +1435,40 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand" data-aos="fade-up">
-            <img src="assets/logo.svg" alt="PikyHost" height="50" />
+            <svg width="120" height="50" viewBox="0 0 120 50" fill="none">
+              <text
+                x="60"
+                y="30"
+                font-family="Arial"
+                font-size="18"
+                font-weight="bold"
+                fill="white"
+                text-anchor="middle"
+              >
+                PikyHost
+              </text>
+            </svg>
             <p
               data-ar="نحن نقدم أفضل خدمات الاستضافة والحلول التقنية لنجاح مشروعك الرقمي"
               data-en="We provide the best hosting services and technical solutions for your digital project success"
             >
               نحن نقدم أفضل خدمات الاستضافة والحلول التقنية لنجاح مشروعك الرقمي
             </p>
-            <div class="social-links">
-              <a href="#" class="social-link"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-link"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="social-link"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-            </div>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <div class="row align-items-center">
-            <div class="col-md-6">
-              <p
-                data-ar="© 2025 PikyHost. جميع الحقوق محفوظة."
-                data-en="© 2025 PikyHost. All rights reserved."
-              >
-                © 2025 PikyHost. جميع الحقوق محفوظة.
-              </p>
-            </div>
-            <div class="col-md-6 text-md-end">
-              <div class="footer-links">
-                <a href="#" data-ar="سياسة الخصوصية" data-en="Privacy Policy"
-                  >سياسة الخصوصية</a
-                >
-                <a href="#" data-ar="شروط الاستخدام" data-en="Terms of Service"
-                  >شروط الاستخدام</a
-                >
-              </div>
-            </div>
-          </div>
+          <p
+            data-ar="© 2025 PikyHost. جميع الحقوق محفوظة."
+            data-en="© 2025 PikyHost. All rights reserved."
+          >
+            © 2025 PikyHost. جميع الحقوق محفوظة.
+          </p>
         </div>
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Optimized Scripts -->
     <script src="script.js"></script>
   </body>
 </html>
