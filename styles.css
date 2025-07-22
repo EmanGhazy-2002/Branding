@@ -1192,7 +1192,7 @@ html {
 
 .popular-badge {
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: -40px;
     background: linear-gradient(135deg, #cd5a0a 0%, #ff7b3a 100%);
     color: var(--text-light);
