@@ -1192,11 +1192,11 @@ html {
 
 .popular-badge {
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: -40px;
     background: linear-gradient(135deg, #cd5a0a 0%, #ff7b3a 100%);
     color: var(--text-light);
-    padding: 6px 35px;
+    padding: 10px 45px;
     font-size: 0.75rem;
     font-weight: 600;
     transform: rotate(45deg);
@@ -1205,25 +1205,42 @@ html {
     white-space: nowrap;
     border-radius: 2px;
     min-width: 140px;
-    text-align: center;
+    height: 32px;
+    line-height: 1.2;
 }
 
 body[dir="rtl"] .popular-badge {
     right: auto;
     left: -40px;
     transform: rotate(-45deg);
+    padding: 10px 40px;
+    height: 32px;
+}
+
+body[dir="ltr"] .popular-badge {
+    padding: 10px 50px;
+    top: 20px;
+    height: 32px;
 }
 
 @media (max-width: 768px) {
     .popular-badge {
         font-size: 0.7rem;
-        padding: 5px 30px;
-        right: -30px;
+        padding: 8px 40px;
+        right: -35px;
         min-width: 120px;
+        height: 28px;
     }
 
     body[dir="rtl"] .popular-badge {
-        left: -40px;
+        left: -35px;
+        padding: 8px 35px;
+        height: 28px;
+    }
+
+    body[dir="ltr"] .popular-badge {
+        padding: 8px 45px;
+        height: 28px;
     }
 }
 
