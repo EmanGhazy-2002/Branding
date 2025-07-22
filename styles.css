@@ -1682,7 +1682,7 @@ body[dir="rtl"] .target-card:hover {
         justify-content: center;
     }
     .hero-card{
-            margin-top: 25px;
+            margin-top: 30px;
     }
 
     .features-grid,
@@ -1733,9 +1733,9 @@ body[dir="rtl"] .target-card:hover {
         flex-direction: column;
         align-items: center;
     }
-         .hero-card {
-             margin-top: 25px;
-         }
+    .hero-card {
+        margin-top: 30px;
+    }
 
     .btn-primary-modern,
     .btn-secondary-modern {
