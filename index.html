@@ -207,13 +207,6 @@
                 data-en="Pricing"
                 >الأسعار</a
               >
-              <a
-                class="nav-link"
-                href="#contact"
-                data-ar="اتصل بنا"
-                data-en="Contact"
-                >اتصل بنا</a
-              >
             </div>
 
             <!-- Language Toggle -->
@@ -346,7 +339,7 @@
             </div>
 
             <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-              <a href="#pricing" class="btn-primary-modern">
+              <a href="#" class="btn-primary-modern" id="heroSubscribeBtn">
                 <span data-ar="اشترك الآن" data-en="Subscribe Now"
                   >اشترك الآن</span
                 >
@@ -361,7 +354,7 @@
                   />
                 </svg>
               </a>
-              <a href="#features" class="btn-secondary-modern">
+              <button class="btn-secondary-modern" id="heroVideoBtn">
                 <svg
                   width="16"
                   height="16"
@@ -373,7 +366,7 @@
                 <span data-ar="شاهد العرض" data-en="Watch Demo"
                   >شاهد العرض</span
                 >
-              </a>
+              </button>
             </div>
           </div>
 
@@ -547,6 +540,11 @@
             الخليج، بحلول تقنية موثوقة وسريعة، بدون تعقيدات.
           </p>
         </div>
+        <div class="feature-cta">
+          <a href="#pricing" class="btn-feature-cta" id="supportSubscribeBtn">
+            <span data-ar="اشترك الآن" data-en="Subscribe Now">اشترك الآن</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -583,7 +581,7 @@
                   fill="currentColor"
                 >
                   <path
-                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                    d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
                   />
                 </svg>
               </div>
@@ -615,7 +613,7 @@
                   fill="currentColor"
                 >
                   <path
-                    d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.4 16,13V16C16,16.6 15.6,17 15,17H9C8.4,17 8,16.6 8,16V13C8,12.4 8.4,11.5 9,11.5V10C9,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.2,8.7 10.2,10V11.5H13.8V10C13.8,8.7 12.8,8.2 12,8.2Z"
+                    d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"
                   />
                 </svg>
               </div>
@@ -647,7 +645,7 @@
                   fill="currentColor"
                 >
                   <path
-                    d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"
+                    d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V5H19V19Z"
                   />
                 </svg>
               </div>
@@ -677,7 +675,7 @@
                   fill="currentColor"
                 >
                   <path
-                    d="M12,1C8.96,1 6.21,2.65 4.86,5.24C3.5,7.83 3.5,11.17 4.86,13.76C6.21,16.35 8.96,18 12,18C15.04,18 17.79,16.35 19.14,13.76C20.5,11.17 20.5,7.83 19.14,5.24C17.79,2.65 15.04,1 12,1M12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z"
+                    d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"
                   />
                 </svg>
               </div>
@@ -694,6 +692,12 @@
               احتياجاتك 24/7.
             </p>
           </div>
+        </div>
+
+        <div class="feature-cta">
+          <a href="#pricing" class="btn-feature-cta" id="supportSubscribeBtn">
+            <span data-ar="اشترك الآن" data-en="Subscribe Now">اشترك الآن</span>
+          </a>
         </div>
       </div>
     </section>
@@ -917,11 +921,14 @@
           >
             <div
               class="popular-badge"
-              data-ar="الأكثر طلباً (وفر 74.5%)"
-              data-en="Most Popular (Save 74.5%)"
+              data-ar="الأكثر طلباً"
+              data-en="Most Popular"
             >
-              الأكثر طلباً (وفر 74.5%)
+              الأكثر طلباً
             </div>
+            <!-- <div class="savings-badge" data-ar="وفر 74.5%" data-en="Save 74.5%">
+              وفر 74.5%
+            </div> -->
             <div class="pricing-header">
               <div class="plan-icon">
                 <svg
@@ -1277,23 +1284,77 @@
             جميع الباقات تشمل:
           </h4>
           <div class="features-list">
-            <span
-              data-ar="دومين مجاني لمدة عام"
-              data-en="Free domain for one year"
-              >دومين مجاني لمدة عام</span
-            >
-            <span
-              data-ar="شهادة SSL مجانية مع التجديد التلقائي"
-              data-en="Free SSL certificate with automatic renewal"
-              >شهادة SSL مجانية مع التجديد التلقائي</span
-            >
-            <span data-ar="نسخ احتياطي يومي" data-en="Daily backups"
-              >نسخ احتياطي يومي</span
-            >
-            <span data-ar="دعم مباشر 24/7" data-en="24/7 live support"
-              >دعم مباشر 24/7</span
-            >
+            <div class="feature-item">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"
+                />
+              </svg>
+              <span
+                data-ar="دومين مجاني لمدة عام"
+                data-en="Free domain for one year"
+                >دومين مجاني لمدة عام</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"
+                />
+              </svg>
+              <span
+                data-ar="شهادة SSL مجانية مع التجديد التلقائي"
+                data-en="Free SSL certificate with automatic renewal"
+                >شهادة SSL مجانية مع التجديد التلقائي</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"
+                />
+              </svg>
+              <span data-ar="نسخ احتياطي يومي" data-en="Daily backups"
+                >نسخ احتياطي يومي</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M11,16.5L18,9.5L16.59,8.09L11,13.67L7.91,10.59L6.5,12L11,16.5Z"
+                />
+              </svg>
+              <span data-ar="دعم مباشر 24/7" data-en="24/7 live support"
+                >دعم مباشر 24/7</span
+              >
+            </div>
           </div>
+        </div>
+
+        <div class="feature-cta">
+          <a href="#pricing" class="btn-feature-cta" id="supportSubscribeBtn">
+            <span data-ar="اشترك الآن" data-en="Subscribe Now">اشترك الآن</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1313,7 +1374,18 @@
 
         <div class="target-grid">
           <div class="target-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="target-icon">✓</div>
+            <div class="target-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"
+                />
+              </svg>
+            </div>
             <p
               data-ar="أصحاب الشركات الناشئة والمتوسطة"
               data-en="Owners of startups and medium-sized businesses"
@@ -1322,7 +1394,18 @@
             </p>
           </div>
           <div class="target-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="target-icon">✓</div>
+            <div class="target-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z"
+                />
+              </svg>
+            </div>
             <p
               data-ar="مواقع الشركات والبورتفوليوهات التعريفية"
               data-en="Company websites and professional portfolios"
@@ -1331,7 +1414,18 @@
             </p>
           </div>
           <div class="target-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="target-icon">✓</div>
+            <div class="target-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17,18C17.5,18 18,17.5 18,17A1,1 0 0,0 17,16C16.5,16 16,16.5 16,17A1,1 0 0,0 17,18M1,2V4H3L6.6,11.59L5.24,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42A0.25,0.25 0 0,1 7.17,14.75C7.17,14.7 7.18,14.66 7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.58 17.3,11.97L20.88,5H5.21L4.27,3H1M7,18C7.5,18 8,17.5 8,17A1,1 0 0,0 7,16C6.5,16 6,16.5 6,17A1,1 0 0,0 7,18Z"
+                />
+              </svg>
+            </div>
             <p
               data-ar="المتاجر الإلكترونية الصغيرة والمتوسطة"
               data-en="Small and medium-sized e-commerce stores"
@@ -1340,7 +1434,18 @@
             </p>
           </div>
           <div class="target-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="target-icon">✓</div>
+            <div class="target-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                />
+              </svg>
+            </div>
             <p
               data-ar="المدونات الشخصية والمواقع الإعلامية"
               data-en="Personal blogs and media websites"
@@ -1349,7 +1454,18 @@
             </p>
           </div>
           <div class="target-card" data-aos="fade-up" data-aos-delay="500">
-            <div class="target-icon">✓</div>
+            <div class="target-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"
+                />
+              </svg>
+            </div>
             <p
               data-ar="أي شخص يبحث عن استضافة سريعة وآمنة بدون تكاليف باهظة"
               data-en="Anyone seeking fast and secure hosting without exorbitant costs"
@@ -1357,6 +1473,11 @@
               أي شخص يبحث عن استضافة سريعة وآمنة بدون تكاليف باهظة
             </p>
           </div>
+        </div>
+        <div class="feature-cta">
+          <a href="#pricing" class="btn-feature-cta" id="supportSubscribeBtn">
+            <span data-ar="اشترك الآن" data-en="Subscribe Now">اشترك الآن</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1394,19 +1515,7 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand" data-aos="fade-up">
-            <svg width="120" height="50" viewBox="0 0 120 50" fill="none">
-              <text
-                x="60"
-                y="30"
-                font-family="Arial"
-                font-size="18"
-                font-weight="bold"
-                fill="white"
-                text-anchor="middle"
-              >
-                PikyHost
-              </text>
-            </svg>
+            <img src="assets/logo.svg" alt="PikyHost" width="130" height="50" />
             <p
               data-ar="نحن نقدم أفضل خدمات الاستضافة والحلول التقنية لنجاح مشروعك الرقمي"
               data-en="We provide the best hosting services and technical solutions for your digital project success"

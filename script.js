@@ -47,6 +47,10 @@ class PerformanceOptimizedLandingPage {
     this.particleSystem = new ParticleSystem();
     this.pricingInteractions = new PricingInteractions();
 
+    // الكلاسات الجديدة
+    this.videoModal = new VideoModal();
+    this.buttonLinksManager = new ButtonLinksManager();
+
     // Mark as loaded
     this.isLoaded = true;
     console.log(
@@ -654,6 +658,238 @@ class PricingInteractions {
     }, 1500);
   }
 }
+
+// Video Modal Handler
+class VideoModal {
+  constructor() {
+    this.modal = null;
+    this.videoUrl = ""; // سيتم تحديثه من الداشبورد
+    this.init();
+  }
+
+  init() {
+    this.createModal();
+    this.setupEventListeners();
+  }
+
+  createModal() {
+    this.modal = document.createElement("div");
+    this.modal.className = "video-modal";
+    this.modal.innerHTML = `
+      <div class="video-modal-overlay">
+        <div class="video-modal-content">
+          <button class="video-modal-close">&times;</button>
+          <div class="video-container">
+            <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(this.modal);
+  }
+
+  setupEventListeners() {
+    // زر شاهد العرض
+    const videoBtn = document.getElementById("heroVideoBtn");
+    if (videoBtn) {
+      videoBtn.addEventListener("click", () => this.openModal());
+    }
+
+    // إغلاق المودال
+    const closeBtn = this.modal.querySelector(".video-modal-close");
+    const overlay = this.modal.querySelector(".video-modal-overlay");
+
+    closeBtn.addEventListener("click", () => this.closeModal());
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) this.closeModal();
+    });
+
+    // إغلاق بالـ Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.modal.classList.contains("active")) {
+        this.closeModal();
+      }
+    });
+  }
+
+  openModal() {
+    // سيتم تحديث الرابط من الداشبورد
+    const videoFrame = this.modal.querySelector("#videoFrame");
+    videoFrame.src =
+      this.videoUrl || "https://www.youtube.com/embed/dQw4w9WgXcQ";
+
+    this.modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  closeModal() {
+    this.modal.classList.remove("active");
+    document.body.style.overflow = "";
+
+    // إيقاف الفيديو
+    const videoFrame = this.modal.querySelector("#videoFrame");
+    videoFrame.src = "";
+  }
+
+  // دالة لتحديث رابط الفيديو من الداشبورد
+  updateVideoUrl(url) {
+    this.videoUrl = url;
+  }
+}
+
+// Button Links Manager - للتحكم في روابط الأزرار من الداشبورد
+class ButtonLinksManager {
+  constructor() {
+    this.buttonLinks = {
+      heroSubscribeBtn: "#pricing",
+      performanceSubscribeBtn: "#pricing",
+      securitySubscribeBtn: "#pricing",
+      controlSubscribeBtn: "#pricing",
+      supportSubscribeBtn: "#pricing",
+    };
+    this.init();
+  }
+
+  init() {
+    this.setupButtonListeners();
+  }
+
+  setupButtonListeners() {
+    Object.keys(this.buttonLinks).forEach((buttonId) => {
+      const button = document.getElementById(buttonId);
+      if (button) {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          const link = this.buttonLinks[buttonId];
+
+          if (link.startsWith("#")) {
+            // رابط داخلي
+            const target = document.querySelector(link);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          } else {
+            // رابط خارجي
+            window.open(link, "_blank");
+          }
+        });
+      }
+    });
+  }
+
+  // دالة لتحديث روابط الأزرار من الداشبورد
+  updateButtonLink(buttonId, link) {
+    this.buttonLinks[buttonId] = link;
+  }
+
+  // دالة لتحديث جميع الروابط من الداشبورد
+  updateAllLinks(links) {
+    this.buttonLinks = { ...this.buttonLinks, ...links };
+  }
+}
+
+// إضافة أنماط CSS للمودال
+const videoModalStyles = `
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.video-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.video-modal.active .video-modal-content {
+  transform: scale(1);
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10001;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+}
+
+.video-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .video-modal-overlay {
+    padding: 1rem;
+  }
+  
+  .video-modal-close {
+    top: -40px;
+    right: 10px;
+  }
+}
+`;
+
+// إضافة الأنماط للصفحة
+const styleSheet = document.createElement("style");
+styleSheet.textContent = videoModalStyles;
+document.head.appendChild(styleSheet);
 
 // Initialize the application
 const app = new PerformanceOptimizedLandingPage();
