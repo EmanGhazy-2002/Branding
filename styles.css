@@ -1311,50 +1311,155 @@ body[dir="rtl"] .savings-badge {
     background: var(--gradient-primary);
 }
 
-/* Included Features */
-.included-features {
+/* Premium Included Features */
+.included-features-premium {
     margin-top: 3rem;
-    background: white;
-    padding: 2.5rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 3rem;
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-lg);
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.included-features h4 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--text-dark);
+.included-features-premium::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+            rgba(0, 156, 168, 0.1) 25%,
+            transparent 25%,
+            transparent 75%,
+            rgba(0, 156, 168, 0.1) 75%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    z-index: 1;
 }
 
-/* Included Features Fix */
-.features-list {
+.premium-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2.5rem;
+}
+
+.premium-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--text-light);
+    border: 3px solid rgba(0, 213, 230, 0.3);
+    animation: premiumPulse 3s ease-in-out infinite;
+}
+
+@keyframes premiumPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 213, 230, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(0, 213, 230, 0);
+    }
+}
+
+.premium-header h4 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.premium-features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.premium-feature-item {
+    background: rgba(0, 156, 168, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 213, 230, 0.2);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
     gap: 1rem;
+    transition: var(--transition);
+    will-change: transform;
+}
+
+.premium-feature-item:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 156, 168, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 156, 168, 0.2);
+}
+
+.premium-feature-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    flex-shrink: 0;
+    border: 2px solid rgba(0, 213, 230, 0.3);
+}
+
+.premium-feature-content {
     text-align: left;
 }
 
-body[dir="rtl"] .features-list {
+body[dir="rtl"] .premium-feature-content {
     text-align: right;
 }
 
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0;
+.premium-feature-content h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.feature-item svg {
-    color: var(--primary);
-    flex-shrink: 0;
-}
-
-.feature-item span {
-    color: var(--text-muted);
+.premium-feature-content span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .premium-features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .premium-feature-item {
+        padding: 1.25rem;
+    }
+
+    .included-features-premium {
+        padding: 2rem;
+    }
+
+    .premium-header h4 {
+        font-size: 1.5rem;
+    }
 }
 
 /* Target Audience */
@@ -1393,8 +1498,8 @@ body[dir="rtl"] .target-card:hover {
 
 /* Target Icons Enhancement */
 .target-icon {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background: var(--gradient-primary);
     color: var(--text-light);
     border-radius: 50%;
@@ -1403,6 +1508,7 @@ body[dir="rtl"] .target-card:hover {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
 }
 
 .target-card p {
@@ -1439,7 +1545,6 @@ body[dir="rtl"] .target-card:hover {
     background: var(--accent3);
     color: var(--text-dark);
 }
-
 
 /* Footer */
 .footer-modern {
