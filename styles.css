@@ -375,17 +375,15 @@ body[dir="rtl"] .nav-language-toggle {
 
     .navbar-nav {
         position: fixed;
-        top: 0;
+        top: 70px;
         left: -100%;
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 70px);
         background: var(--primary);
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
+        justify-content: flex-start;
+        padding-top: 2rem;
         transition: var(--transition);
-        z-index: 1000;
     }
 
     body[dir="rtl"] .navbar-nav {
@@ -415,7 +413,12 @@ body[dir="rtl"] .nav-language-toggle {
     }
 
     .nav-language-toggle {
-        margin-top: 1rem;
+        margin: 1rem 0 0 0;
+        order: 1;
+    }
+
+    body[dir="rtl"] .nav-language-toggle {
+        margin: 1rem 0 0 0;
     }
 
     .nav-lang-btn {
@@ -445,6 +448,48 @@ body[dir="rtl"] .nav-language-toggle {
         background: linear-gradient(135deg, var(--primary) 0%, rgba(0, 156, 168, 0.95) 100%);
         z-index: -1;
     }
+
+    .hero-section {
+        padding-top: 80px;
+        /* Added to create space below the navbar */
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .floating-elements {
+        display: none;
+    }
+
+    .features-grid,
+    .pricing-grid,
+    .target-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card.modern.featured {
+        transform: none;
+    }
+
+    .pricing-card.modern.featured:hover {
+        transform: translateY(-10px);
+    }
 }
 
 @media (max-width: 480px) {
@@ -459,6 +504,7 @@ body[dir="rtl"] .nav-language-toggle {
     .nav-link,
     .nav-cta-btn {
         width: 250px;
+        
     }
 }
 
@@ -1635,6 +1681,9 @@ body[dir="rtl"] .target-card:hover {
     .hero-buttons {
         justify-content: center;
     }
+    .hero-card{
+            margin-top: 25px;
+    }
 
     .features-grid,
     .pricing-grid,
@@ -1684,6 +1733,9 @@ body[dir="rtl"] .target-card:hover {
         flex-direction: column;
         align-items: center;
     }
+         .hero-card {
+             margin-top: 25px;
+         }
 
     .btn-primary-modern,
     .btn-secondary-modern {
